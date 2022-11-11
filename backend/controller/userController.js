@@ -53,8 +53,20 @@ async function addUser(request, res) {
                 }
         });
 }
-
+//useless
+async function getUsers(request,res){
+        console.log("we r in controller now");
+        try {
+            const usersdata = await USER.fetchAllUser();
+            res.writeHeader(200,headers);
+            res.end(JSON.stringify(usersdata));
+        } catch (error) {
+            console.log(error);
+            console.log("problem in controller file");
+        }
+    }
 module.exports = {
         checkUser,
-        addUser
+        addUser,
+        getUsers
 }
