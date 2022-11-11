@@ -2,20 +2,22 @@ const http = require("http");
 
 const {
         addUser,
-        checkUser
+        checkUser,
+        getUsers
 } = require("./controller/userController");
 
 const server = http.createServer((request, res) => {
         console.log(request.url);
         console.log(request.method);
         console.log(request.headers);
-        if (request.url === "/api/add/user" && request.method == "OPTIONS") {
+        if (request.url === "/api/add/user" && request.method === "POST") {
                 addUser(request, res);
-        } else if (request.url === "/api/login" && request.method == "OPTIONS") {
+        } else if (request.url === "/api/login" && request.method === "POST") {
                 checkUser(request, res);
         }
         else {
-                console.log("Something Went Wrong...");
+                getUsers(request, res);
+                console.log("HIT 3");
         }
 });
 
